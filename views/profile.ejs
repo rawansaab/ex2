@@ -1,18 +1,25 @@
-<!-- 
-Names: Rawan Saab: 213693625, Lareen Kadour:213992431 , George Hanna: 324090968
+<!--
+Names: Rawan Saab: 213693625, Lareen Kadour: 213992431, George Hanna: 324090968
 Github URL: https://github.com/rawansaab/ex2
 -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profile My</title>
-    <link rel="stylesheet" href="/profile.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile My</title>
+  <link rel="stylesheet" href="/profile.css" />
 </head>
+
 <body>
   <h1>Profile My</h1>
+
+  <% if (animal) { %>
+    <h2><%= animal.name %></h2>
+    <p><%= animal.description %></p>
+  <% } %>
+
   <p>Current profile: <%= id %></p>
   <img src="/<%= id %>/profile.png" alt="Profile image" />
   <img src="/<%= id %>/banner.png" alt="Banner image" />
