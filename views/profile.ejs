@@ -12,16 +12,10 @@ Github URL: https://github.com/rawansaab/ex2
     <link rel="stylesheet" href="/profile.css" />
 </head>
 <body>
-<h1 class="main-title">Profile My</h1>
-
-  <% if (animal) { %>
-    <h2><%= animal.name %></h2>
-    <p><%= animal.description %></p>
-  <% } %>
-  
+  <h1>Profile My</h1>
   <p>Current profile: <%= id %></p>
-  <img class="profile-img" src="/<%= id %>/profile.png" alt="Profile image" />
-  <header id="banner" style="background-image: url('/<%= id %>/banner.png');">
+  <img src="/<%= id %>/profile.png" alt="Profile image" />
+  <img src="/<%= id %>/banner.png" alt="Banner image" />
   <img src="/<%= id %>/image1.png" alt="Image 1" />
   <img src="/<%= id %>/image2.png" alt="Image 2" />
 </body>
