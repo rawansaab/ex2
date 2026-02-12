@@ -14,7 +14,14 @@ app.use(express.static("public"));
 
 app.get("/profile", function (req, res) {
   let id = req.query.id;
-  res.render("profile", { id: id });
+
+  db.get("SELECT * FROM animals WHERE id = ?", [id], function (err, animal) {
+    if (err) {
+        console.error(err);
+        return;
+    }
+    res.render("profile", { id: id, animal: animal });
+  });
 });
 
 app.listen(3000);
