@@ -4,13 +4,16 @@
  */
 
 const express = require("express");
-const path = require("path"); 
+const path = require("path");
+const sqlite3 = require("sqlite3").verbose(); 
 const app = express();
 const PORT = 3000;
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+const db = new sqlite3.Database("private/profiles.db");
 
 app.get("/profile", function (req, res) {
   const id = req.params.id; 
