@@ -18,9 +18,15 @@ const db = new sqlite3.Database(dbPath);
 
 app.get("/profile", function (req, res) {
   const id = req.query.id; 
-  
-  // animals שולפים את הנתונים מטבלת 
+
+    // animals שולפים את הנתונים מטבלת 
   db.get("SELECT animal_name, description FROM animals WHERE animal_name = ?", [id], function (err, animalRow) {
+    // הוספת טיפול בשגיאות למקרה שהשאילתה נכשלת
+    if (err) {
+      res.status(500).send("Database error");
+      return;
+    }
+
     res.render("profile", { 
       id: id,
       animal: animalRow
