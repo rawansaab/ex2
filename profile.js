@@ -40,6 +40,7 @@ app.get("/profile", function (req, res) {
   });
 });
 
+// הפעלת השרת והדפסת קישור לחיץ לבדיקה נוחה בדפדפן
 app.listen(PORT, function () {
-  console.log("Server is running on port 3000");
+  console.log("Open: http://localhost:3000/profile?id=mickey");
 });
