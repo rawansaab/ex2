@@ -27,6 +27,12 @@ app.get("/profile", function (req, res) {
       return;
     }
 
+    // אם לא נמצאה חיה כזו
+    if (!animalRow) {
+      res.status(404).send("Profile not found");
+      return;
+    }
+
     res.render("profile", { 
       id: id,
       animal: animalRow
