@@ -4,20 +4,9 @@
  */
 
 const express = require("express");
-const path = require("path");
-
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
-app.use(express.static(path.join(__dirname, "public")));
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-
-app.get("/profile", function (req, res) {
-  const id = req.query.id;
-  res.render("profile", { id: id });
-});
-
-app.listen(port, function () {
-  console.log("Open: http://localhost:3000/profile?id=mickey");
+app.listen(PORT, function () {
+  console.log("Server is running on port 3000");
 });
