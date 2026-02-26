@@ -4,12 +4,18 @@
  */
 
 const express = require("express");
+const path = require("path"); 
 const app = express();
 const PORT = 3000;
 
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+app.get("/profile", function (req, res) {
+  const id = req.params.id; 
+  res.render("profile", { id: id });
+});
 
 app.listen(PORT, function () {
   console.log("Server is running on port 3000");
