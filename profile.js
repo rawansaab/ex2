@@ -17,8 +17,8 @@ const dbPath = path.join(__dirname, "private", "profiles.db");
 const db = new sqlite3.Database(dbPath);
 
 app.get("/profile", function (req, res) {
-  const id = req.params.id; 
-
+  const id = req.query.id; 
+  
   // animals שולפים את הנתונים מטבלת 
   db.get("SELECT animal_name, description FROM animals WHERE animal_name = ?", [id], function (err, animalRow) {
     res.render("profile", { 
