@@ -19,8 +19,15 @@ Github URL: https://github.com/rawansaab/ex2
     <div class="content-block info-section">
       <div class="text-column">
         <p><%= animal.description %></p>
-      </div>
-    </div>
-  </div>
+        
+        <div class="info-row">
+          <div class="info-label">
+            <p>Stats / Traits</p>
+          </div>
+          <div class="info-value">
+            <p>
+              <% for (let i = 0; i < traits.length; i++) { %>
+                <strong><%= traits[i].trait_name %>:</strong> <%= traits[i].trait_value %><br>
+
 </body>
 </html>
