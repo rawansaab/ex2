@@ -6,11 +6,21 @@ Github URL: https://github.com/rawansaab/ex2
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Profile My</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Rammetto+One&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/profile.css" />
 </head>
 <body>
-  <h1>Profile My</h1>
-  <p><%= animal.description %></p> 
+  <div class="main-container">
+    <h1 class="main-title">Profile My</h1>
+    <div class="content-block info-section">
+      <div class="text-column">
+        <p><%= animal.description %></p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
