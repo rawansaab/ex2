@@ -43,7 +43,7 @@ app.get("/profile", function (req, res) {
         if (err) {
 
 
-        // מעבירים הכל יחד לתבנית, כולל הביקורות
+        // מעבירים הכל יחד לתבנית
         res.render("profile", { 
           id: id,
           animal: animalRow,
