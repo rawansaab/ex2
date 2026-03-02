@@ -19,23 +19,31 @@ const db = new sqlite3.Database(dbPath);
 app.get("/profile", function (req, res) {
   const id = req.query.id; 
 
-    // animals שולפים את הנתונים מטבלת 
+  // animals שולפים את הנתונים מטבלת 
   db.get("SELECT animal_name, description FROM animals WHERE animal_name = ?", [id], function (err, animalRow) {
-    // הוספת טיפול בשגיאות למקרה שהשאילתה נכשלת
     if (err) {
       res.status(500).send("Database error");
       return;
     }
 
-    // אם לא נמצאה חיה כזו
     if (!animalRow) {
       res.status(404).send("Profile not found");
       return;
     }
 
-    res.render("profile", { 
-      id: id,
-      animal: animalRow
+    // animal_traits שולפים את התכונות מטבלת
+    db.all("SELECT trait_name, trait_value FROM animal_traits WHERE animal_name = ?", [id], function (err, traitsRows) {
+      if (err) {
+        res.status(500).send("Database error");
+        return;
+      }
+
+      // מעבירים את הנתונים לתבנית (בשלב זה ללא ביקורות)
+      res.render("profile", { 
+        id: id,
+        animal: animalRow,
+        traits: traitsRows
+      });
     });
   });
 });
