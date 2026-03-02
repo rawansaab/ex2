@@ -32,20 +32,25 @@ app.get("/profile", function (req, res) {
     }
 
     // animal_traits שולפים את התכונות מטבלת
-    db.all("SELECT trait_name, trait_value FROM animal_traits WHERE animal_name = ?", [id], function (err, traitsRows) {
+    db.all("SELECT trait_name, trait_value FROM animal_traits WHERE animal_name = ?", [req.query.name], function (err, traitsRows) {
       if (err) {
         res.status(500).send("Database error");
         return;
       }
 
-      // מעבירים את הנתונים לתבנית (בשלב זה ללא ביקורות)
-      res.render("profile", { 
-        id: id,
-        animal: animalRow,
-        traits: traitsRows
+      // reviews החלק החדש - שולפים את הביקורות מטבלת
+      db.all("SELECT review_text, reviewer_name FROM review WHERE animal_name = ?", [id], function (err, reviewsRows) {
+        if (err) {
+
+
+        // מעבירים הכל יחד לתבנית, כולל הביקורות
+        res.render("profile", { 
+          id: id,
+          animal: animalRow,
+          traits: traitsRows,
+        });
       });
-    });
-  });
+
 });
 
 // הפעלת השרת והדפסת קישור לחיץ לבדיקה נוחה בדפדפן
