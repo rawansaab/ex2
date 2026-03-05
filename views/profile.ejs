@@ -35,6 +35,20 @@ Github URL: https://github.com/rawansaab/ex2
         
       </div>
     </div>
+
+    <div class="content-block endorsements-section">
+      <div class="text-column">
+        <h2>Endorsements</h2>
+        <% for (let i = 0; i < reviews.length; i++) { %>
+          <div class="endorsement-card">
+            <p>"<%= reviews[i].review_text %>"</p> 
+            <hr>
+            <span>- <%= reviews[i].reviewer_name %></span> 
+          </div>
+        <% } %>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>
