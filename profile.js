@@ -17,6 +17,12 @@ app.set("view engine", "ejs");
 const dbPath = path.join(__dirname, "private", "profiles.db");
 const db = new sqlite3.Database(dbPath);
 
+// לוגיקת אתחול נתונים
+db.serialize(function() {
+  // Step 1: Adding the main profile description (Fix: using OR REPLACE to allow updates)
+  db.run(`INSERT OR REPLACE INTO animals (animal_name, description) VALUES ('myprofile', 'We are Rawan Saab, Lareen Kadour, and George Hanna. Information Systems students at Zefat Academic College, creating this dynamic profile for assignment 2.')`);
+});
+
 app.get("/profile", function (req, res) {
   const id = req.query.id || "myprofile";
 
@@ -49,7 +55,7 @@ app.get("/profile", function (req, res) {
           return;
         }
 
-        // שליפת שאר החברים (ה-Squad)
+        // שליפת שאר החברים 
         db.all("SELECT animal_name FROM animals WHERE animal_name != ?", [id], function (err, friendsRows) {
           if (err) {
             console.error("Error fetching friends:", err.message);
