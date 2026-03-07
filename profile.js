@@ -22,10 +22,12 @@ db.serialize(function() {
   // Step 1: Adding the main profile description (Fix: using OR REPLACE to allow updates)
   db.run(`INSERT OR REPLACE INTO animals (animal_name, description) VALUES ('myprofile', 'We are Rawan Saab, Lareen Kadour, and George Hanna. Information Systems students at Zefat Academic College, creating this dynamic profile for assignment 2.')`);
 
-  // Step 2: Adding 4 personal traits for the team (Part 1: Names and Year)
+  // Step 2: Adding 4 personal traits for the team
   db.run(`INSERT OR REPLACE INTO animal_traits (animal_name, trait_name, trait_value) VALUES 
   ('myprofile', 'Names', 'Rawan, Lareen & George'),
-  ('myprofile', 'Academic Year', '2026')`);
+  ('myprofile', 'Academic Year', '2026'),
+  ('myprofile', 'Specialization', 'Information Systems'),
+  ('myprofile', 'Tech Stack', 'Node.js, Express, SQLite')`);
 });
 
 app.get("/profile", function (req, res) {
