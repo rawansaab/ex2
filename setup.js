@@ -1,3 +1,8 @@
+/**
+ * Names: Rawan Saab: 213693625, Lareen Kadour: 213992431, George Hanna: 324090968
+ * Github URL: https://github.com/rawansaab/ex2
+ */
+
 // Database setup script for myprofile
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
