@@ -9,6 +9,7 @@ const sqlite3 = require("sqlite3").verbose();
 const app = express();
 const PORT = 3000;
 
+// הגדרת תיקיית הקבצים הסטטיים והתבניות
 app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
@@ -17,8 +18,9 @@ const dbPath = path.join(__dirname, "private", "profiles.db");
 const db = new sqlite3.Database(dbPath);
 
 app.get("/profile", function (req, res) {
-  const id = req.query.id; 
+  const id = req.query.id || "myprofile";
 
+  // שליפת מידע על הפרופיל
   db.get("SELECT animal_name, description FROM animals WHERE animal_name = ?", [id], function (err, animalRow) {
     if (err) {
       console.error("Error in animals table:", err.message); 
@@ -31,6 +33,7 @@ app.get("/profile", function (req, res) {
       return;
     }
 
+    // שליפת תכונות
     db.all("SELECT trait_name, trait_value FROM animal_traits WHERE animal_name = ?", [id], function (err, traitsRows) {
       if (err) {
         console.error("Error in animal_traits table:", err.message); 
@@ -38,6 +41,7 @@ app.get("/profile", function (req, res) {
         return;
       }
 
+      // שליפת ביקורות
       db.all("SELECT review_text, reviewer FROM reviews WHERE animal_name = ?", [id], function (err, reviewsRows) {
         if (err) {
           console.error("Error in reviews table:", err.message); 
@@ -45,7 +49,7 @@ app.get("/profile", function (req, res) {
           return;
         }
 
-        // תיקון סופי: שולפים את שאר החברים (לא כולל החיה שמוצגת כרגע)
+        // שליפת שאר החברים (ה-Squad)
         db.all("SELECT animal_name FROM animals WHERE animal_name != ?", [id], function (err, friendsRows) {
           if (err) {
             console.error("Error fetching friends:", err.message);
@@ -58,15 +62,16 @@ app.get("/profile", function (req, res) {
             animal: animalRow,
             traits: traitsRows,
             reviews: reviewsRows,
-            friends: friendsRows // מעבירים את רשימת החברים האמיתית
+            friends: friendsRows 
           });
         });
-        
       });
     });
   });
 });
 
 app.listen(PORT, function () {
-  console.log("Open: http://localhost:3000/profile?id=mickey");
+  console.log("Server is running!");
+  console.log("Check our profile here: http://localhost:3000/profile?id=myprofile");
+  console.log("Check Mickey's profile here: http://localhost:3000/profile?id=mickey");
 });
