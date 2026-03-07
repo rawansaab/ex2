@@ -26,7 +26,7 @@ db.serialize(function() {
   db.run(`INSERT OR REPLACE INTO reviews (animal_name, review_number, review_text, reviewer) VALUES 
   ('myprofile', 1, 'Lareen’s technical proficiency and dedication to the front-end design made her a vital asset to our team.', 'Rawan Saab'),
   ('myprofile', 2, 'George’s backend development skills and problem-solving abilities were crucial in building our profile’s functionality.', 'Lareen Kadour'),
-  ('myprofile', 3, 'Very clean EJS template structure.', 'Code Auditor'),
+  ('myprofile', 3, 'Rawan’s leadership and organizational skills kept our project on track. She bridges technical requirements perfectly.', 'George Hanna'),
   ('myprofile', 4, 'Professional and aesthetic design.', 'UX Specialist')`);
 });
 
