@@ -29,9 +29,10 @@ db.serialize(function() {
   ('myprofile', 'Specialization', 'Information Systems'),
   ('myprofile', 'Tech Stack', 'Node.js, Express, SQLite')`);
 
-  // Step 3: Adding 4 reviews with the correct 'reviewer' column
+// Step 3: Adding 4 reviews with the correct 'reviewer' column
   db.run(`INSERT OR REPLACE INTO reviews (animal_name, review_number, review_text, reviewer) VALUES 
-  ('myprofile', 1, 'Lareen’s technical proficiency and dedication to the front-end design made her a vital asset to our team.', 'Rawan Saab')`);
+  ('myprofile', 1, 'Lareen’s technical proficiency and dedication to the front-end design made her a vital asset to our team.', 'Rawan Saab'),
+  ('myprofile', 2, 'George’s backend development skills and problem-solving abilities were crucial in building our profile’s functionality.', 'Lareen Kadour')`);
 });
 
 app.get("/profile", function (req, res) {
