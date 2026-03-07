@@ -7,7 +7,7 @@ Github URL: https://github.com/rawansaab/ex2
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Profile My</title>
+  <title>My Profile</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Rammetto+One&display=swap" rel="stylesheet">
@@ -16,15 +16,15 @@ Github URL: https://github.com/rawansaab/ex2
 <body>
   <div class="main-container">
     
-    <div id="banner">
+    <header id="banner" style="background-image: url('/<%= id %>/banner.png');">
       <div class="banner-inner">
         <div class="profile-img-wrapper">
-          <img class="profile-image" src="/<%= id %>.png" alt="Profile Picture">
+          <img class="profile-img" src="/<%= id %>/profile.png" alt="Profile Picture">
         </div>
       </div>
-    </div>
+    </header>
 
-    <h1 class="main-title">Profile My</h1>
+    <h1 class="main-title">My Profile</h1>
     <div class="content-block info-section">
       <div class="text-column">
         <p><%= animal.description %></p>
@@ -45,7 +45,7 @@ Github URL: https://github.com/rawansaab/ex2
       </div>
 
       <div class="image-column">
-        <img src="/<%= id %>.png" alt="animal main picture">
+        <img src="/<%= id %>/image1.png" alt="animal main picture">
       </div>
       
     </div>
