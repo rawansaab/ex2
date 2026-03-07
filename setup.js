@@ -27,7 +27,7 @@ db.serialize(function() {
   ('myprofile', 1, 'Lareen’s technical proficiency and dedication to the front-end design made her a vital asset to our team.', 'Rawan Saab'),
   ('myprofile', 2, 'George’s backend development skills and problem-solving abilities were crucial in building our profile’s functionality.', 'Lareen Kadour'),
   ('myprofile', 3, 'Rawan’s leadership and organizational skills kept our project on track. She bridges technical requirements perfectly.', 'George Hanna'),
-  ('myprofile', 4, 'Professional and aesthetic design.', 'UX Specialist')`);
+  ('myprofile', 4, 'If Full-Stack development was a blockbuster movie, Dr. Boaz Miller would be our Oscar-winning director! We have officially leveled up from "Syntax Errors" to "Code Warriors" thanks to this inspiring course. We are aiming for a grade that matches our passion—a perfect 100—and we are already lining up for the sequel!', 'The Code Warriors (Rawan, Lareen & George)')`);
 });
 
 // Step 4: Closing the database connection properly
