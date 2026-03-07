@@ -62,16 +62,18 @@ Github URL: https://github.com/rawansaab/ex2
         <% } %>
       </div>
       <div class="image-column">
-        <img src="/<%= id %>/image2.png
+        <img src="/<%= id %>/image2.png" alt="animal endorsement picture">
       </div>
+    </div>
 
     <div class="friends-section">
       <h2>Meet the whole debugging squad</h2>
       <div class="friends-grid">
-        <img src="/<%= id %>/profile.png" alt="friend 1">
-        <img src="/<%= id %>/profile.png" alt="friend 2">
-        <img src="/<%= id %>/profile.png" alt="friend 3">
-        <img src="/<%= id %>/profile.png" alt="friend 4">
+        <% for (let i = 0; i < friends.length; i++) { %>
+          <a href="/profile?id=<%= friends[i].animal_name %>">
+            <img src="/<%= friends[i].animal_name %>/profile.png" alt="<%= friends[i].animal_name %> profile">
+          </a>
+        <% } %>
       </div>
     </div>
 

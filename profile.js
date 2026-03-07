@@ -19,10 +19,9 @@ const db = new sqlite3.Database(dbPath);
 app.get("/profile", function (req, res) {
   const id = req.query.id; 
 
-  // animals שולפים את הנתונים מטבלת 
   db.get("SELECT animal_name, description FROM animals WHERE animal_name = ?", [id], function (err, animalRow) {
     if (err) {
-      console.error("Error in animals table:", err.message); //הוספנו את זה כדי לגלות את הבאג
+      console.error("Error in animals table:", err.message); 
       res.status(500).send("Database error");
       return;
     }
@@ -32,26 +31,26 @@ app.get("/profile", function (req, res) {
       return;
     }
 
-    // animal_traits שולפים את התכונות מטבלת
     db.all("SELECT trait_name, trait_value FROM animal_traits WHERE animal_name = ?", [id], function (err, traitsRows) {
       if (err) {
-        console.error("Error in animal_traits table:", err.message); //הוספנו את זה כדי לגלות את הבאג
+        console.error("Error in animal_traits table:", err.message); 
         res.status(500).send("Database error");
         return;
       }
 
-      // reviews שולפים את הביקורות מטבלת
       db.all("SELECT review_text, reviewer_name FROM reviews WHERE animal_name = ?", [id], function (err, reviewsRows) {
         if (err) {
-          console.error("Error in reviews table:", err.message); //הוספנו את זה כדי לגלות את הבאג
+          console.error("Error in reviews table:", err.message); 
           res.status(500).send("Database error");
           return;
         }
 
-        // --- התוספת החדשהה ---
-        db.all("SELECT animal_name FROM animal", [], function (err, friendsRows) {
+        // תיקון סופי: שולפים את שאר החברים (לא כולל החיה שמוצגת כרגע)
+        db.all("SELECT animal_name FROM animals WHERE animal_name != ?", [id], function (err, friendsRows) {
           if (err) {
             console.error("Error fetching friends:", err.message);
+            res.status(500).send("Database error");
+            return;
           }
 
           res.render("profile", { 
@@ -59,7 +58,7 @@ app.get("/profile", function (req, res) {
             animal: animalRow,
             traits: traitsRows,
             reviews: reviewsRows,
-            friends: friendsRows || [] // אם יש שגיאה נעביר מערך 
+            friends: friendsRows // מעבירים את רשימת החברים האמיתית
           });
         });
         
@@ -68,7 +67,6 @@ app.get("/profile", function (req, res) {
   });
 });
 
-// הפעלת השרת והדפסת קישור לחיץ לבדיקה נוחה בדפדפן
 app.listen(PORT, function () {
   console.log("Open: http://localhost:3000/profile?id=mickey");
 });
