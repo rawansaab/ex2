@@ -3,6 +3,11 @@
  * Github URL: https://github.com/rawansaab/ex2
  */
 
+/**
+ * Names: Rawan Saab: 213693625, Lareen Kadour: 213992431, George Hanna: 324090968
+ * Github URL: https://github.com/rawansaab/ex2
+ */
+
 const express = require("express");
 const path = require("path");
 const sqlite3 = require("sqlite3").verbose();
@@ -32,29 +37,34 @@ app.get("/profile", function (req, res) {
     }
 
     // animal_traits שולפים את התכונות מטבלת
-    // [req.query.name] -במקום ב [id] -תוקן: משתמשים ב
     db.all("SELECT trait_name, trait_value FROM animal_traits WHERE animal_name = ?", [id], function (err, traitsRows) {
       if (err) {
         res.status(500).send("Database error");
         return;
       }
 
-      // reviews החלק החדש - שולפים את הביקורות מטבלת
-      // review במקום reviews :תוקן
+      // reviews שולפים את הביקורות מטבלת
       db.all("SELECT review_text, reviewer_name FROM reviews WHERE animal_name = ?", [id], function (err, reviewsRows) {
-        // תוקן: בלוק הטיפול בשגיאות הושלם ונסגר כמו שצריך
         if (err) {
           res.status(500).send("Database error");
           return;
         }
 
-        // מעבירים הכל יחד לתבנית, כולל הביקורות
-        res.render("profile", { 
-          id: id,
-          animal: animalRow,
-          traits: traitsRows,
-          reviews: reviewsRows // תוקן: הוספנו את מערך הביקורות לתבנית
+        // --- התוספת החדשהה ---
+        db.all("SELECT animal_name FROM animal", [], function (err, friendsRows) {
+          if (err) {
+            console.error("Error fetching friends:", err.message);
+          }
+
+          res.render("profile", { 
+            id: id,
+            animal: animalRow,
+            traits: traitsRows,
+            reviews: reviewsRows,
+            friends: friendsRows || [] // אם יש שגיאה נעביר מערך 
+          });
         });
+        
       });
     });
   });
