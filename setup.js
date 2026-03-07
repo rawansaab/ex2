@@ -6,22 +6,24 @@ const path = require("path");
 const dbPath = path.join(__dirname, "private", "profiles.db");
 const db = new sqlite3.Database(dbPath);
 
-// Step 1: Adding the main profile description directly
-db.run(`INSERT INTO animals (animal_name, description) VALUES ('myprofile', 'We are Rawan Saab, Lareen Kadour, and George Hanna. Information Systems students at Zefat College, showcasing our team profile.')`);
+db.serialize(function() {
+  // Step 1: Adding the main profile description (Fix: using OR REPLACE to allow updates)
+  db.run(`INSERT OR REPLACE INTO animals (animal_name, description) VALUES ('myprofile', 'We are Rawan Saab, Lareen Kadour, and George Hanna. Information Systems students at Zefat Academic College, creating this dynamic profile for assignment 2.')`);
 
-// Step 2: Adding 4 personal traits for the team
-db.run(`INSERT INTO animal_traits (animal_name, trait_name, trait_value) VALUES 
-('myprofile', 'Names', 'Rawan, Lareen & George'),
-('myprofile', 'Academic Year', '2026'),
-('myprofile', 'Specialization', 'Information Systems'),
-('myprofile', 'Tech Stack', 'Node.js, Express, SQLite')`);
+  // Step 2: Adding 4 personal traits for the team
+  db.run(`INSERT OR REPLACE INTO animal_traits (animal_name, trait_name, trait_value) VALUES 
+  ('myprofile', 'Names', 'Rawan, Lareen & George'),
+  ('myprofile', 'Academic Year', '2026'),
+  ('myprofile', 'Specialization', 'Information Systems'),
+  ('myprofile', 'Tech Stack', 'Node.js, Express, SQLite')`);
 
-// Step 3: Adding 4 personal reviews
-db.run(`INSERT INTO reviews (animal_name, review_number, review_text, reviewer) VALUES 
-('myprofile', 1, 'The team demonstrated great collaboration skills.', 'Senior Developer'),
-('myprofile', 2, 'The dynamic features are implemented perfectly.', 'Project Lead'),
-('myprofile', 3, 'Very clean EJS template structure.', 'Code Auditor'),
-('myprofile', 4, 'Professional and aesthetic design.', 'UX Specialist')`);
+  // Step 3: Adding 4 reviews with the correct 'reviewer' column
+  db.run(`INSERT OR REPLACE INTO reviews (animal_name, review_number, review_text, reviewer) VALUES 
+  ('myprofile', 1, 'The team demonstrated great collaboration skills.', 'Senior Developer'),
+  ('myprofile', 2, 'The dynamic features are implemented perfectly.', 'Project Lead'),
+  ('myprofile', 3, 'Very clean EJS template structure.', 'Code Auditor'),
+  ('myprofile', 4, 'Professional and aesthetic design.', 'UX Specialist')`);
+});
 
 // Step 4: Closing the database connection properly
 db.close((err) => {
