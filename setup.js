@@ -22,3 +22,12 @@ db.run(`INSERT INTO reviews (animal_name, review_number, review_text, reviewer) 
 ('myprofile', 2, 'The dynamic features are implemented perfectly.', 'Project Lead'),
 ('myprofile', 3, 'Very clean EJS template structure.', 'Code Auditor'),
 ('myprofile', 4, 'Professional and aesthetic design.', 'UX Specialist')`);
+
+// Step 4: Closing the database connection properly
+db.close((err) => {
+  if (err) {
+    console.error(err.message);
+  } else {
+    console.log("Success! All required data has been added to profiles.db");
+  }
+});
