@@ -52,7 +52,7 @@ Github URL: https://github.com/rawansaab/ex2
 
     <div class="content-block endorsements-section">
       <div class="text-column">
-        <h2>Endorsements</h2>
+        <h2>Endorsement</h2>
         <% for (let i = 0; i < reviews.length; i++) { %>
           <div class="endorsement-card">
             <p>"<%= reviews[i].review_text %>"</p> 
@@ -61,15 +61,17 @@ Github URL: https://github.com/rawansaab/ex2
           </div>
         <% } %>
       </div>
-    </div>
+      <div class="image-column">
+        <img src="/<%= id %>/image2.png
+      </div>
 
     <div class="friends-section">
-      <h2>Friends</h2>
+      <h2>Meet the whole debugging squad</h2>
       <div class="friends-grid">
-        <img src="/<%= id %>.png" alt="friend 1">
-        <img src="/<%= id %>.png" alt="friend 2">
-        <img src="/<%= id %>.png" alt="friend 3">
-        <img src="/<%= id %>.png" alt="friend 4">
+        <img src="/<%= id %>/profile.png" alt="friend 1">
+        <img src="/<%= id %>/profile.png" alt="friend 2">
+        <img src="/<%= id %>/profile.png" alt="friend 3">
+        <img src="/<%= id %>/profile.png" alt="friend 4">
       </div>
     </div>
 
