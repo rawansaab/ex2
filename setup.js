@@ -15,3 +15,8 @@ db.run(`INSERT INTO animal_traits (animal_name, trait_name, trait_value) VALUES
 ('myprofile', 'Academic Year', '2026'),
 ('myprofile', 'Specialization', 'Information Systems'),
 ('myprofile', 'Tech Stack', 'Node.js, Express, SQLite')`);
+
+// Step 3: Adding  personal reviews
+db.run(`INSERT INTO reviews (animal_name, review_number, review_text, reviewer) VALUES 
+('myprofile', 1, 'The team demonstrated great collaboration skills.', 'Senior Developer'),
+('myprofile', 2, 'The dynamic features are implemented perfectly.', 'Project Lead')`);
