@@ -3,11 +3,6 @@
  * Github URL: https://github.com/rawansaab/ex2
  */
 
-/**
- * Names: Rawan Saab: 213693625, Lareen Kadour: 213992431, George Hanna: 324090968
- * Github URL: https://github.com/rawansaab/ex2
- */
-
 const express = require("express");
 const path = require("path");
 const sqlite3 = require("sqlite3").verbose();
@@ -27,6 +22,7 @@ app.get("/profile", function (req, res) {
   // animals שולפים את הנתונים מטבלת 
   db.get("SELECT animal_name, description FROM animals WHERE animal_name = ?", [id], function (err, animalRow) {
     if (err) {
+      console.error("Error in animals table:", err.message); //הוספנו את זה כדי לגלות את הבאג
       res.status(500).send("Database error");
       return;
     }
@@ -39,6 +35,7 @@ app.get("/profile", function (req, res) {
     // animal_traits שולפים את התכונות מטבלת
     db.all("SELECT trait_name, trait_value FROM animal_traits WHERE animal_name = ?", [id], function (err, traitsRows) {
       if (err) {
+        console.error("Error in animal_traits table:", err.message); //הוספנו את זה כדי לגלות את הבאג
         res.status(500).send("Database error");
         return;
       }
@@ -46,6 +43,7 @@ app.get("/profile", function (req, res) {
       // reviews שולפים את הביקורות מטבלת
       db.all("SELECT review_text, reviewer_name FROM reviews WHERE animal_name = ?", [id], function (err, reviewsRows) {
         if (err) {
+          console.error("Error in reviews table:", err.message); //הוספנו את זה כדי לגלות את הבאג
           res.status(500).send("Database error");
           return;
         }
