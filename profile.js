@@ -38,7 +38,7 @@ app.get("/profile", function (req, res) {
         return;
       }
 
-      db.all("SELECT review_text, reviewer_name FROM reviews WHERE animal_name = ?", [id], function (err, reviewsRows) {
+      db.all("SELECT review_text, reviewer FROM reviews WHERE animal_name = ?", [id], function (err, reviewsRows) {
         if (err) {
           console.error("Error in reviews table:", err.message); 
           res.status(500).send("Database error");
