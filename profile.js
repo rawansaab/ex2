@@ -29,12 +29,21 @@ db.serialize(function() {
   ('myprofile', 'Specialization', 'Information Systems'),
   ('myprofile', 'Tech Stack', 'Node.js, Express, SQLite')`);
 
-// Step 3: Adding 4 reviews with the correct 'reviewer' column
+  // Step 3: Adding 4 reviews with the correct 'reviewer' column
   db.run(`INSERT OR REPLACE INTO reviews (animal_name, review_number, review_text, reviewer) VALUES 
   ('myprofile', 1, 'Lareen’s technical proficiency and dedication to the front-end design made her a vital asset to our team.', 'Rawan Saab'),
   ('myprofile', 2, 'George’s backend development skills and problem-solving abilities were crucial in building our profile’s functionality.', 'Lareen Kadour'),
   ('myprofile', 3, 'Rawan’s leadership and organizational skills kept our project on track. She bridges technical requirements perfectly.', 'George Hanna'),
-  ('myprofile', 4, 'If Full-Stack development was a blockbuster movie, Dr. Boaz Miller would be our Oscar-winning director! We have officially leveled up from "Syntax Errors" to "Code Warriors" thanks to this inspiring course. We are aiming for a grade that matches our passion—a perfect 100—and we are already lining up for the sequel!', 'The Code Warriors (Rawan, Lareen & George)')`);
+  ('myprofile', 4, 'If Full-Stack development was a blockbuster movie, Dr. Boaz Miller would be our Oscar-winning director! We have officially leveled up from "Syntax Errors" to "Code Warriors" thanks to this inspiring course. We are aiming for a grade that matches our passion—a perfect 100—and we are already lining up for the sequel!', 'The Code Warriors (Rawan, Lareen & George)')`, 
+  
+  function(err) {
+    if (!err) {
+      // Step 4: Final Success Message
+      console.log("Success! All required data has been added to profiles.db");
+    } else {
+      console.error("Error inserting data:", err.message);
+    }
+  });
 });
 
 app.get("/profile", function (req, res) {
