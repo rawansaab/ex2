@@ -1,13 +1,13 @@
 /**
- * Names: Rawan Saab (213693625), Lareen Kadour (213992431), George Hanna (324090968)
- * Date: March 2026
- * Github URL: https://github.com/rawansaab/ex2
- * * Description: 
- * This is the main server file for Exercise 2. 
- * It uses Express.js to handle requests, SQLite3 for data persistence, and EJS as the template engine.
- * The server dynamically fetches animal profile data, traits, reviews, and a list of "friends" 
- * from the database based on the 'id' query parameter.
- */
+* Names: Rawan Saab (213693625), Lareen Kadour (213992431), George Hanna (324090968)
+* Date: March 2026
+* Github URL: https://github.com/rawansaab/ex2
+* * Description: 
+* This is the main server file for Exercise 2. 
+* It uses Express.js to handle requests, SQLite3 for data persistence, and EJS as the template engine.
+* The server dynamically fetches animal profile data, traits, reviews, and a list of "friends" 
+* from the database based on the 'id' query parameter.
+*/
 
 const express = require("express");
 const path = require("path");
