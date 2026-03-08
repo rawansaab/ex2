@@ -53,7 +53,7 @@ db.serialize(function() {
 
 // Route ראשי להצגת פרופיל
 app.get("/profile", function (req, res) {
-  const id = req.query.id || "myprofile";
+  let id = req.query.id;
 
   // שליפת מידע בסיסי על החיה/פרופיל
   db.get("SELECT animal_name, description FROM animals WHERE animal_name = ?", [id], function (err, animalRow) {
