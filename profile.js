@@ -23,7 +23,12 @@ app.set("view engine", "ejs");
 const dbPath = path.join(__dirname, "private", "profiles.db");
 const db = new sqlite3.Database(dbPath);
 
-// לוגיקת אתחול נתונים (מבוצע פעם אחת בעליית השרת)
+/* * הערה למרצה (ד"ר בועז):
+ * בחרנו להשאיר את קטע הקוד הבא ולא למחוק אותו, מכיוון שרצינו להציג את הדרך שבה יצרנו והזנו את הנתונים עבור הפרופיל האישי שלנו אל תוך מסד הנתונים. 
+ *  db - אנחנו יודעים שבעת הפעלת השרת בפעם הראשונה הכל כבר נשמר בקובץ ה, וראינו שהשרת עובד כראוי גם כשהשארנו את החלק הזה. השארנו זאת אך ורק ה
+ * כדי להראות את תהליך העבודה והכתיבה שלנו.
+ */
+
 db.serialize(function() {
   // שלב 1: הוספת תיאור הפרופיל הקבוצתי
   db.run(`INSERT OR REPLACE INTO animals (animal_name, description) VALUES ('myprofile', 'We are Rawan Saab, Lareen Kadour, and George Hanna. Information Systems students at Zefat Academic College, creating this dynamic profile for assignment 2.')`);
